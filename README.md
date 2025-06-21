@@ -103,6 +103,6 @@ npm run build
 
 💬 Discord: [RealmNodes](https://discord.gg/f9aKHX8qHB)
 
-🛠 GitHub: [FunPay AutoBump](https://github.com/ccoin27/FunPay-Auto-Raise-AutoBump-/edit/main/README.md)
+🛠 GitHub: [FunPay AutoBump](https://github.com/ccoin27/FunPay-Auto-Raise)
 ### 📃 Лицензия
 MIT © 2025 — [Coin27]
