@@ -23,8 +23,8 @@
 ### 1. Клонирование
 
 ```bash
-git clone https://github.com/yourusername/funpay-autobump.git
-cd funpay-autobump
+git clone https://github.com/ccoin27/FunPay-Auto-Raise/
+cd FunPay-Auto-Raise
 ```
 
 ### 2. Установка зависимостей
@@ -48,7 +48,7 @@ HTML/CSS/JS (ES6+)
 
 chrome.runtime, chrome.storage, chrome.alarms
 
-[htmlparser2](https://www.npmjs.com/package/htmlparser2) и css-[select](https://www.npmjs.com/package/css-select) для парсинга HTML с FunPay
+[htmlparser2](https://www.npmjs.com/package/htmlparser2) и [css-select](https://www.npmjs.com/package/css-select) для парсинга HTML с FunPay
 
 ### 📁 Структура проекта
 ```
@@ -58,8 +58,8 @@ funpay-autobump/
 │   ├── popup.js
 │   ├── background.js
 │   ├── style.css
-│   └── utils/
-│       └── parser.js
+├── icons/
+│   ├── icon.png
 ├── manifest.json
 ├── README.md
 ├── package.json
