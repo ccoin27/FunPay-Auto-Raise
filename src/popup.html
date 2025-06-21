@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>FunPay AutoBump</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  body {
+    background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+    color: #e2e8f0;
+    min-width: 320px;
+    padding: 20px;
+    border-radius: 12px;
+    overflow: hidden;
+    width: 320px;
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #4a5568;
+    gap: 15px;
+  }
+
+  .logo {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(45deg, #805ad5, #d53f8c);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 20px;
+    user-select: none;
+  }
+
+  .logo img {
+    width: 80%;
+    height: 80%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+  }
+  
+  h1 {
+    font-size: 22px;
+    font-weight: 700;
+    background: linear-gradient(45deg, #ecc94b, #f6ad55);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 0.5px;
+  }
+
+  .status-card {
+    background: rgba(26, 32, 44, 0.75);
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    border: 1px solid #4a5568;
+  }
+
+  .status-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+
+  .settings-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #ecc94b;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 26px;
+  }
+
+  .toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #4a5568;
+    border-radius: 34px;
+    transition: background-color 0.4s;
+  }
+
+  .slider:before {
+    content: "";
+    position: absolute;
+    height: 18px;
+    width: 18px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.4s;
+  }
+
+  .toggle-switch input:checked + .slider {
+    background-color: #68d391;
+  }
+
+  .toggle-switch input:checked + .slider:before {
+    transform: translateX(24px);
+  }
+
+  .status-content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .timer-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #4a5568;
+  }
+
+  .next-bump {
+    font-size: 14px;
+    color: #cbd5e0;
+  }
+
+  .timer {
+    font-size: 20px;
+    font-weight: 700;
+    font-family: monospace;
+    background: linear-gradient(45deg, #68d391, #63b3ed);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .stats {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+    padding-top: 10px;
+  }
+
+  .stat-item {
+    text-align: center;
+    flex: 1;
+  }
+
+  .stat-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: #68d391;
+  }
+
+  .stat-label {
+    color: #a0aec0;
+    font-size: 12px;
+    margin-top: 2px;
+  }
+
+  .action-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    gap: 10px;
+  }
+
+  .btn {
+    flex: 1;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.2s;
+  }
+
+  .btn-primary {
+    background: linear-gradient(45deg, #805ad5, #d53f8c);
+    color: white;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(128, 90, 213, 0.3);
+  }
+
+  .btn-secondary {
+    background: rgba(74, 85, 104, 0.5);
+    color: #e2e8f0;
+    border: 1px solid #4a5568;
+  }
+
+  .btn-secondary:hover {
+    background: rgba(74, 85, 104, 0.8);
+  }
+
+  .social-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+  }
+
+  .btn-social {
+    flex: 1;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.2s;
+  }
+
+  .btn-discord {
+    background: #5865F2;
+  }
+
+  .btn-discord:hover {
+    background: #4752C4;
+    transform: translateY(-2px);
+  }
+
+  .btn-telegram {
+    background: #26A5E4;
+  }
+
+  .btn-telegram:hover {
+    background: #1C8BC8;
+    transform: translateY(-2px);
+  }
+
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    color: #718096;
+    font-size: 12px;
+    user-select: none;
+  }
+
+  .version {
+    opacity: 0.7;
+  }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="logo">FP</div>
+    <h1 class="username">AUTO BUMP</h1>
+  </div>
+
+  <div class="status-card">
+    <div class="status-header">
+      <div class="settings-title">
+        <i class="fas fa-cog"></i> Настройки
+      </div>
+      <label class="toggle-switch">
+        <input type="checkbox" id="toggle" checked />
+        <span class="slider"></span>
+      </label>
+    </div>
+    
+    <div class="status-content">
+      <div class="timer-section">
+        <div class="next-bump">Следующее поднятие:</div>
+        <div class="timer" id="timer">--:--</div>
+      </div>
+      
+      <div class="stats">
+        <div class="stat-item">
+          <div class="stat-value" id="todayCount">0</div>
+          <div class="stat-label">Сегодня</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value" id="totalCount">0</div>
+          <div class="stat-label">Всего</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value balance">0</div>
+          <div class="stat-label">Баланс</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="social-buttons">
+    <button class="btn-social btn-discord">
+      <i class="fab fa-discord"></i> Discord
+    </button>
+    <button class="btn-social btn-telegram">
+      <i class="fab fa-telegram"></i> Telegram
+    </button>
+  </div>
+
+  <div class="footer">
+    <div class="version">v1.0.2</div>
+    <div>FunPay AutoBump</div>
+    <div><i class="far fa-heart"></i></div>
+  </div>
+
+<script src="popup.js"></script>
+</body>
+</html>
