@@ -2,8 +2,20 @@ const toggleSwitch = document.getElementById('toggle');
 const timerElement = document.getElementById('timer');
 const intervalInput = document.getElementById('interval');
 const todayCountElement = document.getElementById('todayCount');
-const totalCountElement = document.getElementById('totalCount');
 const categories = document.getElementById('categories')
+
+const links = [
+  { selector: '.btn-discord', url: 'https://discord.gg/f9aKHX8qHB' },
+  { selector: '.btn-telegram', url: 'https://t.me/realmnodes' },
+  { selector: '.github', url: 'https://github.com/ccoin27/FunPay-Auto-Raise' },
+];
+
+links.forEach(({ selector, url }) => {
+  const el = document.querySelector(selector);
+  if (el) {
+    el.addEventListener('click', () => window.open(url, '_blank'));
+  }
+});
 
 const CACHE_DURATION = 10 * 60 * 1000;
 const CATEGORIES_CACHE_DURATION = 10 * 60 * 1000;
@@ -12,7 +24,6 @@ let state = {
   isActive: true,
   nextBumpTime: 0,
   bumpCountToday: 0,
-  bumpCountTotal: 0,
   interval: 45,
   categories: 0
 };
@@ -108,8 +119,6 @@ async function setCachedAvatar() {
       const logoDiv = document.querySelector('.logo');
       if (logoDiv) {
         logoDiv.innerHTML = `<img src="${cachedUrl}" alt="FP">`;
-        logoDiv.style.background = 'none';
-        logoDiv.style.fontSize = '0';
       }
     }
     if (cachedName) {
@@ -145,19 +154,6 @@ async function setCachedAvatar() {
 async function init() {
   send({ type: "getState" });
   await setCachedAvatar();
-
-  document.getElementById('discordBtn').addEventListener('click', () => {
-    window.open('https://discord.gg/f9aKHX8qHB', '_blank');
-  });
-
-  document.getElementById('telegramBtn').addEventListener('click', () => {
-    window.open('https://t.me/realmnodes', '_blank');
-  });
-
-  document.getElementById('githubBtn').addEventListener('click', () => {
-    window.open('https://github.com/ваш-репозиторий', '_blank');
-  });
-
   setInterval(updateTimer, 1000);
 }
 function updateTimer() {

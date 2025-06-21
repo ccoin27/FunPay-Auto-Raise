@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>FunPay AutoBump</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 <style>
   * {
     margin: 0;
@@ -40,19 +41,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: 700;
-    font-size: 20px;
-    user-select: none;
+    padding: 2px; 
+    box-sizing: border-box;
   }
 
   .logo img {
-    width: 80%;
-    height: 80%;
+    width: 97%;
+    height: 97%;
     object-fit: cover;
     border-radius: 50%;
     display: block;
   }
-  
+    
   h1 {
     font-size: 22px;
     font-weight: 700;
@@ -60,6 +60,7 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     letter-spacing: 0.5px;
+    font-family: 'Roboto', sans-serif;
   }
 
   .status-card {
@@ -305,8 +306,8 @@
           <div class="stat-label">Сегодня</div>
         </div>
         <div class="stat-item">
-          <div class="stat-value" id="totalCount">0</div>
-          <div class="stat-label">Всего</div>
+          <div class="stat-value" id="categories">0</div>
+          <div class="stat-label">Категории</div>
         </div>
         <div class="stat-item">
           <div class="stat-value balance">0</div>
@@ -328,9 +329,9 @@
   <div class="footer">
     <div class="version">v1.0.2</div>
     <div>FunPay AutoBump</div>
-    <div><i class="far fa-heart"></i></div>
+    <div style="cursor: pointer;"><i class="fab fa-github github"></i></div>
   </div>
 
-<script src="popup.js"></script>
+  <script src="popup.js"></script>
 </body>
 </html>
