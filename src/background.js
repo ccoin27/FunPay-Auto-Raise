@@ -326,7 +326,6 @@ async function main() {
   extensionState.categories = cats.length
   utils.saveState();
   broadcastState();
-  console.log(extensionState)
   if (!extensionState.isActive) return;
   await api.raiseAll();
 }

@@ -2,7 +2,9 @@ const toggleSwitch = document.getElementById('toggle');
 const timerElement = document.getElementById('timer');
 const intervalInput = document.getElementById('interval');
 const todayCountElement = document.getElementById('todayCount');
-const categories = document.getElementById('categories')
+const categories = document.getElementById('categories');
+const version = document.querySelector('.version');
+const manifestData = chrome.runtime.getManifest();
 
 const links = [
   { selector: '.btn-discord', url: 'https://discord.gg/f9aKHX8qHB' },
@@ -152,6 +154,7 @@ async function setCachedAvatar() {
 }
 
 async function init() {
+  version.textContent = `v${manifestData.version}`
   send({ type: "getState" });
   await setCachedAvatar();
   setInterval(updateTimer, 1000);
