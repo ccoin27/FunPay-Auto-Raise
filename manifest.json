@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "FunPay Auto Raise",
-  "version": "1.0.2",
+  "version": "1.0.1",
   "description": "Автоматическое поднятие лотов на FunPay.",
   "permissions": ["storage", "alarms", "scripting", "cookies"],
   "host_permissions": ["https://funpay.com/*"],
