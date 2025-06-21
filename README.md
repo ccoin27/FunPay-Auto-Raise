@@ -56,6 +56,7 @@ funpay-autobump/
 ├── README.md
 ├── LICENCE
 ├── package.json
+├── background.bundle.js
 └── webpack.config.js
 ```
 
