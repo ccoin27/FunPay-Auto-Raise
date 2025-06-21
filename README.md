@@ -62,6 +62,7 @@ funpay-autobump/
 │   ├── icon.png
 ├── manifest.json
 ├── README.md
+├── LICENCE
 ├── package.json
 └── webpack.config.js
 ```
@@ -75,32 +76,21 @@ npm install --save-dev webpack webpack-cli webpack-dev-server html-webpack-plugi
 ## Пример webpack.config.js
 ```js
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'production',
-  entry: {
-    popup: './src/popup.js',
-    background: './src/background.js'
-  },
+  entry: './src/background.js', 
   output: {
-    filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'background.bundle.js'
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './src/popup.html',
-      filename: 'index.html',
-      chunks: ['popup']
-    })
-  ],
-  module: {
-    rules: [
-      {
-        test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
-      }
-    ]
+  target: 'webworker', 
+  resolve: {
+    fallback: {
+      "path": require.resolve("path"),
+      "fs": false,
+      "os": false
+    }
   }
 };
 ```
