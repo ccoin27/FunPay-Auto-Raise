@@ -216,7 +216,7 @@ const api = {
         utils.log(`Node ${nodeId}: ⚠️ Подождите ${waitMinutes} минут`);
         return waitMinutes;
       } else {
-        extensionState.bumpCountToday += categories.length;
+        extensionState.bumpCountToday += 1;
         utils.log(`Node ${nodeId}: Успешно поднято`);
       }
       return true;
